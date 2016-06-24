@@ -11,7 +11,7 @@ Color trace(Ray& ray, Scene& scn,int x,int y){
 		Mesh* m = scn.get_mesh(index_mesh);
 		//for every triangle
 		unsigned int number_of_faces = m->get_number_of_faces();
-		for(int index_face=0; index_face < number_of_faces; index_face++){
+        for(unsigned int index_face=0; index_face < number_of_faces; index_face++){
 			float t_tmp = m->intersect(ray,index_face);
 
 			if(t_tmp<t){

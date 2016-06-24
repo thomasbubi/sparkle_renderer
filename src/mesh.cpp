@@ -11,26 +11,26 @@ Mesh::Mesh(unsigned int number_of_vertices, unsigned int number_of_faces) {
 }
 
 Mesh::~Mesh() {
-	for(int i=0;i<_vertices.size();i++){
+    for(unsigned int i=0;i<_vertices.size();i++){
 		delete _vertices[i];
 	}
 
-	for(int i=0;i<_faces.size();i++){
+    for(unsigned int i=0;i<_faces.size();i++){
 		delete _faces[i];
 	}
 
-	for(int i=0;i<_vertex_normals.size();i++){
+    for(unsigned int i=0;i<_vertex_normals.size();i++){
 		delete _vertex_normals[i];
 	}
 
-	for(int i=0;i<_face_normals.size();i++){
+    for(unsigned int i=0;i<_face_normals.size();i++){
 		delete _face_normals[i];
 	}
 }
 
 void Mesh::calculate_face_normals(){
 	_face_normals.reserve(_faces.size());
-	for(int i=0;i<_faces.size();i++){
+    for(unsigned int i=0;i<_faces.size();i++){
 		Face* tmp_face = _faces[i];
 		unsigned int a = tmp_face->a();
 		unsigned int b = tmp_face->b();

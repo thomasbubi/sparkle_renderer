@@ -5,7 +5,7 @@ int detect_obj_format(const char* line){
 	int number_of_slashes=0;
 	int double_slash = false;
 
-	for(int i=1;i<std::strlen(line)-1;i++){
+    for(unsigned int i=1;i<std::strlen(line)-1;i++){
 		if(line[i]=='/'){
 			number_of_slashes++;
 			if(line[i-1]=='/'){

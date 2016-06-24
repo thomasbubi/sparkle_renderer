@@ -1,0 +1,12 @@
+# IntelliJ folder
+.idea/
+
+# QtCreator files
+*.config
+*.creator
+*.user
+*.files
+*.includes
+
+*.out
+*.o

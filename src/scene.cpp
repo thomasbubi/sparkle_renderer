@@ -9,10 +9,10 @@ Scene::Scene() {
 
 Scene::~Scene() {
 	delete _camera;
-	for(int i=0;i<_meshes.size();i++){
+    for(unsigned int i=0;i<_meshes.size();i++){
 		delete _meshes[i];
 	}
-	for(int i=0;i<_materials.size();i++){
+    for(unsigned int i=0;i<_materials.size();i++){
 			delete _materials[i];
 		}
 }

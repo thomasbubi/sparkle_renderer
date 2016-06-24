@@ -1,5 +1,4 @@
-#include "trace_shade.h"
-#include "load_obj.h"
+#include "texture.h"
 
 void render(Scene& scn){
 
@@ -13,8 +12,8 @@ void render(Scene& scn){
 	//header for ppm writing
 	image_file << "P3\n" << width <<" " << height << "\n 255 \n";
 
-	for(int j=0;j<height;j++){
-		for(int i=0;i<width;i++){
+    for(unsigned int j=0;j<height;j++){
+        for(unsigned int i=0;i<width;i++){
 			Ray ray =cam->create_view_ray(i,j);
 			Color c = trace(ray,scn,i,j);
 			image_file << int(c.r()*255) << " " << int(c.g()*255)
@@ -66,7 +65,10 @@ int main()
 	scn.add_lamp(new Lamp(Vector(0.8,0.8,0.8),Color(0.5,0.5,0.5),1));
     //load_obj(&scn,"test.obj");
 
-	render(scn);
+    //render(scn);
+
+    Texture tex = Texture("texture.png");
+    tex.load_texture();
 	std::cout << "😻  \"miau\" 😻" << std::endl;
 
 }
