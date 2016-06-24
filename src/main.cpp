@@ -1,4 +1,5 @@
-#include "texture.h"
+#include "trace_shade.h"
+#include "load_obj.h"
 
 void render(Scene& scn){
 
@@ -56,13 +57,13 @@ int main()
 
 	cornell_box->calculate_face_normals();
 
-	scn.add_material(new Material(Color(1,0,0)));
-	scn.add_material(new Material(Color(1,1,1)));
-	scn.add_material(new Material(Color(0,1,0)));
+    scn.add_material(new Material(Color(1,0,0)));
+    scn.add_material(new Material(Color(1,1,1)));
+    scn.add_material(new Material(Color(0,1,0)));
 
 	scn.add_mesh(cornell_box);
 
-	scn.add_lamp(new Lamp(Vector(0.8,0.8,0.8),Color(0.5,0.5,0.5),1));
+    scn.add_lamp(new Lamp(Vector(0.8,0.8,0.8),Color(0.5,0.5,0.5),1));
     //load_obj(&scn,"test.obj");
 
     //render(scn);

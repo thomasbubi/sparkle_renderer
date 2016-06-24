@@ -1,6 +1,5 @@
-#include "trace_shade.h"
-#include "load_obj.h"
 #include "lodepng.h"
+#include "color.h"
 
 #ifndef TEXTURE_H
 #define TEXTURE_H

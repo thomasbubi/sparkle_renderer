@@ -4,7 +4,7 @@ Scene::Scene() {
 	_camera = nullptr;
 	_number_of_meshes=0;
 	_number_of_materials=0;
-	_background_color = Color(0.1,0.1,0.1);
+    _background_color = Color(0.1,0.1,0.1,1);
 }
 
 Scene::~Scene() {

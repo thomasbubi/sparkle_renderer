@@ -7,6 +7,14 @@ Color::Color() {
     _alpha=1.0f;
 }
 
+Color::Color(float r, float g, float b) {
+    _r=r;
+    _g=g;
+    _b=b;
+    _alpha=1.0f;
+}
+
+
 Color::Color(float r, float g, float b, float alpha) {
 	_r=r;
 	_g=g;

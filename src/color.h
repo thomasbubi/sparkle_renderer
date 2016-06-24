@@ -8,7 +8,8 @@ class Color {
     float _alpha;
 public:
 	Color();
-	Color(float r, float g, float b);
+    Color(float r, float g, float b);
+    Color(float r, float g, float b, float alpha);
 	virtual ~Color();
 
 	float b() const {
@@ -75,19 +76,19 @@ public:
 
 
 	Color operator+(Color rhs){
-		return Color(this->_r+rhs._r,this->_g+rhs._g,this->_b+rhs._b);
+        return Color(this->_r+rhs._r,this->_g+rhs._g,this->_b+rhs._b,this->_alpha+rhs._alpha);
 	}
 
 	Color operator-(Color rhs){
-		return Color(this->_r-rhs._r,this->_g-rhs._g,this->_b-rhs._b);
+        return Color(this->_r-rhs._r,this->_g-rhs._g,this->_b-rhs._b,this->_alpha-rhs._alpha);
 	}
 
 	Color operator*(Color rhs){
-        return Color(this->_r*rhs._r,this->_g*rhs._g,this->_b*rhs._b);
+        return Color(this->_r*rhs._r,this->_g*rhs._g,this->_b*rhs._b,this->_alpha*rhs._alpha);
 	}
 
     Color operator*(float scalar){
-        return Color(this->_r*scalar,this->_g*scalar,this->_b*scalar);
+        return Color(this->_r*scalar,this->_g*scalar,this->_b*scalar,this->_alpha*scalar);
 	}
 
 };

@@ -1,4 +1,5 @@
 #include "color.h"
+#include "texture.h"
 
 #ifndef SRC_MATERIAL_H_
 #define SRC_MATERIAL_H_
@@ -8,6 +9,8 @@ class Material {
 	Color _specular;
 	Color _ambient;
 	unsigned int _exponent;
+	bool _has_texture;
+	Texture* _tex;
 public:
 	Material(const Color& diffuse_color);
 	virtual ~Material();
@@ -40,6 +43,18 @@ public:
 	void set_specular_color(const Color& specular) {
 		_specular = specular;
 	}
+	bool has_texture() {
+	    return _has_texture;
+	}
+
+    void add_texture(Texture* tex){
+        _tex=tex;
+        _has_texture=true;
+    }
+
+    Color get_texture_color_at(float u, float v);
+
+
 };
 
 #endif /* SRC_MATERIAL_H_ */

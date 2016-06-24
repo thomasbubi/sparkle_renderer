@@ -6,6 +6,7 @@
 #include "face.h"
 #include "ray.h"
 #include "vector.h"
+#include "uv.h"
 
 #ifndef SRC_MESH_H_
 #define SRC_MESH_H_
@@ -16,6 +17,7 @@ class Mesh {
 	std::vector<Face *> _faces;
 	std::vector<Vector *> _vertex_normals;
 	std::vector<Vector *> _face_normals;
+    std::vector<UV*> _uvs;
 
 	unsigned int _number_of_vertices;
 	unsigned int _number_of_faces;
@@ -25,8 +27,9 @@ public:
 	virtual ~Mesh();
 	unsigned int get_number_of_vertices(){return _vertices.size();}
 	unsigned int get_number_of_faces(){return _faces.size();}
-	Vector* get_face_normal(unsigned int index){return _face_normals[index];};
+    Vector* get_face_normal(unsigned int index){return _face_normals[index];}
 	Vector* get_vertex_normal(unsigned int index){return _vertex_normals[index];}
+    UV* get_uv(unsigned int index){return _uvs[index];}
 	void add_vertex(Vector* vertex){
 		_vertices.push_back(vertex);
 	}
@@ -47,6 +50,9 @@ public:
 	void set_name(const std::string& name) {
 		_name = name;
 	}
+
+    std::vector<float> calculate_baryzentric_coordinates(Vector point,
+                                                     unsigned int index_of_face);
 };
 
 #endif /* SRC_MESH_H_ */

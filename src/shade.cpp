@@ -2,10 +2,13 @@
 
 Color shade(Scene& scene, Material* mat,Vector& surface_point, Vector* n){
 	Color diffuse = mat->get_diffuse_color();
+    if(mat->has_texture()){
+        diffuse = mat->get_texture_color_at(0,0);
+    }
 	Color ambient = mat->get_ambient_color();
 	Color specular = mat->get_specular_color();
 
-	Color tmp = Color(0,0,0);
+    Color tmp = Color(0,0,0,1);
 
 	tmp+=ambient*0.1;
 
