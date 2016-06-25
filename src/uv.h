@@ -9,8 +9,8 @@ class UV
 public:
     UV(float u, float v);
     virtual ~UV();
-    float u(){return _u;}
-    float v(){return _v;}
+    inline float u(){return _u;}
+    inline float v(){return _v;}
     void set_u(float u);
     void set_v(float v);
 };

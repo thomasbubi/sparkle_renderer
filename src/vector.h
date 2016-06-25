@@ -12,85 +12,63 @@ public:
 	Vector(float x, float y, float z);
 	virtual ~Vector();
 
-	float x() const {
+    inline float x() const {
 		return _x;
 	}
 
-	void set_x(float x) {
+    inline void set_x(float x) {
 		_x = x;
 	}
 
-	float y() const {
+    inline float y() const {
 		return _y;
 	}
 
-	void set_y(float y) {
+    inline void set_y(float y) {
 		_y = y;
 	}
 
-	float z() const {
+    inline float z() const {
 		return _z;
 	}
 
-	void set_z(float z) {
+    inline void set_z(float z) {
 		_z = z;
 	}
 
-	Vector operator + (const Vector& rhs) {
+    inline Vector operator + (const Vector& rhs) {
 		return Vector(this->_x+rhs._x,this->_y+rhs._y,this->_z+rhs._z);
 	}
 
-	void operator += (const Vector& rhs) {
-		this->_x+=rhs._x;
-		this->_y+=rhs._y;
-		this->_z+=rhs._z;
-	}
+    void operator += (const Vector& rhs);
 
-	Vector operator - (const Vector& rhs) {
+    inline Vector operator - (const Vector& rhs) {
 		return Vector(this->_x-rhs._x,this->_y-rhs._y,this->_z-rhs._z);
 	}
 
-	void operator-= (const Vector& rhs) {
-		this->_x-=rhs._x;
-		this->_y-=rhs._y;
-		this->_z-=rhs._z;
-	}
+    void operator-= (const Vector& rhs);
 
-	Vector operator* (const float& scalar){
+    inline Vector operator* (const float& scalar){
 		return Vector(this->_x*scalar,this->_y*scalar,this->_z*scalar);
 	}
 
-	void operator*= (const float& scalar){
-		this->_x*=scalar;
-		this->_y*=scalar;
-		this->_z*=scalar;
-	}
+    void operator*= (const float& scalar);
 
-	static Vector cross(const Vector& lhs, const Vector& rhs) {
-		return Vector(
-				lhs._y*rhs._z - lhs._z*rhs._y,
-				-(lhs._x*rhs._z)+lhs._z*rhs._x,
-				lhs._x*rhs._y - lhs._y*rhs._x
-		);
-	}
-	static float dot(const Vector& lhs, const Vector& rhs) {
+    static Vector cross(const Vector& lhs, const Vector& rhs);
+
+    inline static float dot(const Vector& lhs, const Vector& rhs) {
 		return lhs._x*rhs._x + lhs._y*rhs._y + lhs._z*rhs._z;
 	}
 
-	float abs() {
+    inline float abs() {
 		return sqrt(this->abs2());
 	}
 
-	float abs2() {
+    inline float abs2() {
 		return this->_x*this->_x + this->_y*this->_y + this->_z*this->_z;
 	}
 
-	void normalize(){
-		float abs = this->abs();
-		_x/=abs;
-		_y/=abs;
-		_z/=abs;
-	}
+    void normalize();
 
 };
 

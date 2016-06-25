@@ -15,8 +15,8 @@ public:
     Texture(std::string path);
     virtual ~Texture();
     void load_texture();
-    unsigned int get_width(){return _width;}
-    unsigned int get_height(){return _height;}
+    inline unsigned int get_width(){return _width;}
+    inline unsigned int get_height(){return _height;}
     Color get_texture_value_at(float u, float v);
 };
 

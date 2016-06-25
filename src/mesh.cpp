@@ -26,6 +26,10 @@ Mesh::~Mesh() {
     for(unsigned int i=0;i<_face_normals.size();i++){
 		delete _face_normals[i];
 	}
+
+    for(unsigned int i=0;i<_uvs.size();i++){
+        delete _uvs[i];
+    }
 }
 
 void Mesh::calculate_face_normals(){

@@ -1,6 +1,6 @@
 #include "trace_shade.h"
 
-Color trace(Ray& ray, Scene& scn,int x,int y){
+Color trace(Ray& ray, Scene& scn,int x, int y){
 	float t=INFINITY;
 	int meshnum = -1;
 	int facenum = -1;
@@ -26,12 +26,9 @@ Color trace(Ray& ray, Scene& scn,int x,int y){
 	if(meshnum <0 || facenum <0){//ray doesn't hit any object
 		c=scn.get_background_color();
 	} else {
-
-		unsigned int material_index = scn.get_mesh(meshnum)->get_face(facenum)->material_index();
-		Material* mat_ptr = scn.get_material(material_index);
-		Vector* n=scn.get_mesh(meshnum)->get_face_normal(facenum);
+        Vector* n=scn.get_mesh(meshnum)->get_face_normal(facenum);
 		Vector surface_point = ray.at(t);
-		c = shade(scn,mat_ptr,surface_point,n);
+        c = shade(scn,surface_point,n,meshnum,facenum,x,y);
 	}
 	return c;
 }

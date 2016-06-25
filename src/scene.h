@@ -20,33 +20,34 @@ public:
 	}
 	Color& get_background_color(){return _background_color;}
 	Camera* get_camera(){return _camera;}
-	void add_mesh(Mesh* m){
+    inline void add_mesh(Mesh* m){
 		_meshes.push_back(m);
 		_number_of_meshes+=1;
 	}
-	int add_material(Material* mat){
+
+    inline void add_material(Material* mat){
 		_materials.push_back(mat);
 		_number_of_materials+=1;
-		return _number_of_materials;//-1;
 	}
-	void add_lamp(Lamp* l){
+
+    inline void add_lamp(Lamp* l){
 		_lamps.push_back(l);
 	}
-	unsigned int get_number_of_meshes(){
+    inline unsigned int get_number_of_meshes(){
 		return _meshes.size();
 	}
-	unsigned int get_number_of_lamps(){
+    inline unsigned int get_number_of_lamps(){
 		return _lamps.size();
 	}
-	Mesh* get_mesh(int i){
+    inline Mesh* get_mesh(int i){
 		return _meshes[i];
 	}
 
-	Material* get_material(int i){
+    inline Material* get_material(int i){
 		return _materials[i];
 	}
 
-	Lamp* get_lamp(int i){
+    inline Lamp* get_lamp(int i){
 		return _lamps[i];
 	}
 

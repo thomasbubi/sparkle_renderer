@@ -10,18 +10,18 @@ public:
 	Face(unsigned int a,unsigned int b,unsigned int c, unsigned int material_index);
 	virtual ~Face();
 
-	unsigned int a() const {
+    inline unsigned int a() const {
 		return _a;
 	}
 
-	unsigned int b() const {
+    inline unsigned int b() const {
 		return _b;
 	}
 
-	unsigned int c() const {
+    inline unsigned int c() const {
 		return _c;
 	}
-	unsigned int material_index() const {
+    inline unsigned int material_index() const {
 		return _m;
 	}
 };

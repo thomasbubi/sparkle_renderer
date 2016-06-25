@@ -25,29 +25,37 @@ class Mesh {
 public:
 	Mesh(unsigned int number_of_vertices, unsigned int number_of_faces);
 	virtual ~Mesh();
-	unsigned int get_number_of_vertices(){return _vertices.size();}
-	unsigned int get_number_of_faces(){return _faces.size();}
+    inline unsigned int get_number_of_vertices(){return _vertices.size();}
+    inline unsigned int get_number_of_faces(){return _faces.size();}
+
     Vector* get_face_normal(unsigned int index){return _face_normals[index];}
 	Vector* get_vertex_normal(unsigned int index){return _vertex_normals[index];}
     UV* get_uv(unsigned int index){return _uvs[index];}
-	void add_vertex(Vector* vertex){
+
+    inline void add_vertex(Vector* vertex){
 		_vertices.push_back(vertex);
 	}
-	void add_face(Face* face){
+
+    inline void add_face(Face* face){
 		_faces.push_back(face);
 	}
+
+    inline void add_uv(UV* uv){
+        _uvs.push_back(uv);
+    }
+
 	void calculate_face_normals();
 	void calculate_vertex_normals();
 	float intersect( Ray& r,unsigned int index_of_face);
-	Face* get_face(int i){
+    inline Face* get_face(int i){
 		return _faces[i];
 	}
 
-	const std::string& get_name() const {
+    inline const std::string& get_name() const {
 		return _name;
 	}
 
-	void set_name(const std::string& name) {
+    inline void set_name(const std::string& name) {
 		_name = name;
 	}
 
