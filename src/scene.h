@@ -25,9 +25,10 @@ public:
 		_number_of_meshes+=1;
 	}
 
-    inline void add_material(Material* mat){
+    inline unsigned int add_material(Material* mat){
 		_materials.push_back(mat);
 		_number_of_materials+=1;
+		return _number_of_materials -1;
 	}
 
     inline void add_lamp(Lamp* l){

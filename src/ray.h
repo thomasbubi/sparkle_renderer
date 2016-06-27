@@ -10,23 +10,23 @@ public:
 	Ray(const Vector& origin, const Vector& direction);
 	virtual ~Ray();
 
-	Vector get_direction() {
+    inline Vector get_direction() {
 		return _direction;
 	}
 
-	void set_direction(const Vector& direction) {
+    inline void set_direction(const Vector& direction) {
 		_direction = direction;
 	}
 
-	Vector get_origin() {
+    inline Vector get_origin() {
 		return _origin;
 	}
 
-	void set_origin(const Vector& origin) {
+    inline void set_origin(const Vector& origin) {
 		_origin = origin;
 	}
 
-	Vector at(float t) {
+    inline Vector at(float t) {
 		return _origin + _direction*t;
 	}
 };

@@ -12,15 +12,15 @@ public:
 	Lamp(Vector position, Color color,float intensity);
 	virtual ~Lamp();
 
-	const Color& get_color() const {
+    inline const Color& get_color() const {
 		return _color;
 	}
 
-	float get_intensity() const {
+    inline float get_intensity() const {
 		return _intensity;
 	}
 
-	const Vector& get_position() const {
+    inline const Vector& get_position() const {
 		return _position;
 	}
 };
