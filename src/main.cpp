@@ -33,7 +33,7 @@ int main()
 	Camera* cam = new Camera(Vector(0,-1.5,0),Vector(0,1,0),width,height);
 	Scene scn = Scene();
 	scn.set_camera(cam);
-	Mesh* cornell_box = new Mesh(8,10);
+    /*Mesh* cornell_box = new Mesh(8,10);
 
 	cornell_box->add_vertex(new Vector(-1,-1,-1));
 	cornell_box->add_vertex(new Vector(-1,-1,1));
@@ -44,16 +44,16 @@ int main()
 	cornell_box->add_vertex(new Vector(1,-1,-1));
 	cornell_box->add_vertex(new Vector(1,-1,1));
 
-	cornell_box->add_face(new Face(0, 1, 2, 0));
-	cornell_box->add_face(new Face(1, 2, 3, 0));
-	cornell_box->add_face(new Face(2, 3, 4, 1));
-	cornell_box->add_face(new Face(3, 4, 5, 1));
-    cornell_box->add_face(new Face(0, 2, 6, 1));
-    cornell_box->add_face(new Face(2, 4, 6, 1));
-	cornell_box->add_face(new Face(1, 3, 7, 1));
-	cornell_box->add_face(new Face(3, 5, 7, 1));
-	cornell_box->add_face(new Face(4, 5, 6, 2));
-	cornell_box->add_face(new Face(5, 6, 7, 2));
+    cornell_box->add_face(new Face(0, 1, 2, 0, 1, 2, 0));
+    cornell_box->add_face(new Face(1, 2, 3, 1, 2, 3, 0));
+    cornell_box->add_face(new Face(2, 3, 4, 2, 3, 4, 1));
+    cornell_box->add_face(new Face(3, 4, 5, 3, 4, 5, 1));
+    cornell_box->add_face(new Face(0, 2, 6, 0, 2, 6, 1));
+    cornell_box->add_face(new Face(2, 4, 6, 2, 4, 6, 1));
+    cornell_box->add_face(new Face(1, 3, 7, 1, 3, 7, 1));
+    cornell_box->add_face(new Face(3, 5, 7, 3, 5, 7, 1));
+    cornell_box->add_face(new Face(4, 5, 6, 4, 5, 6, 2));
+    cornell_box->add_face(new Face(5, 6, 7, 5, 6, 7, 2));
 
     cornell_box->add_uv(new UV(0,0));
     cornell_box->add_uv(new UV(0,0));
@@ -76,10 +76,11 @@ int main()
     scn.add_material(textured_material);
     scn.add_material(new Material(Color(0,1,0)));
 
-	scn.add_mesh(cornell_box);
+    scn.add_mesh(cornell_box);*/
 
     scn.add_lamp(new Lamp(Vector(0.8,0.8,0.8),Color(0.5,0.5,0.5),1));
-    //load_obj(&scn,"test.obj");
+    scn.add_material(new Material(Color(1,1,1)));
+    load_obj(&scn,"untitled.obj");
 
     render(scn);
 

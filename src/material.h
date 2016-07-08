@@ -5,15 +5,15 @@
 #define SRC_MATERIAL_H_
 
 class Material {
-	Color _diffuse;
-	Color _specular;
-	Color _ambient;
-	unsigned int _exponent;
-	bool _has_texture;
+    Color _diffuse;
+    Color _specular;
+    Color _ambient;
+    unsigned int _exponent;
+    bool _has_texture;
     Texture* _tex;
 public:
-	Material(const Color& diffuse_color);
-	virtual ~Material();
+    Material(const Color& diffuse_color);
+    virtual ~Material();
 	//virtual Color& shade()=0;
 
     inline const Color& get_ambient_color() const {

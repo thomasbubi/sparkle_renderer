@@ -8,7 +8,7 @@ int detect_obj_format(const char* line){
     for(unsigned int i=1;i<std::strlen(line)-1;i++){
 		if(line[i]=='/'){
 			number_of_slashes++;
-			if(line[i-1]=='/'){
+            if(line[i+1]=='/'){
 				double_slash=true;
 			}
 		}
@@ -45,13 +45,15 @@ void load_obj(Scene* scene, std::string path){
 		if(!format_detected && lc[0]=='f') {
 			format_detected=true;
 			face_format = detect_obj_format(lc);
-			continue;
+
 		}
 
 		if(lc[0]=='o'){//new object in obj file, new mesh is created
 			m = new Mesh(3,1);
 			scene->add_mesh(m);
 			m->set_name("cube");
+            format_detected=false;
+            continue;
 		//read vertex data
 		} else if(lc[0]=='v' && lc[1]==' '){
 			float x,y,z;
@@ -65,25 +67,36 @@ void load_obj(Scene* scene, std::string path){
 			int vb=1;
 			int vc=1;
 
+            int vta=0;int vtb=0;int vtc=0;
+            int vna=0;int vnb=0;int vnc=0;
+            //std::cout << "faceformat "<<face_format << "\n";
 			if(face_format==0){
 				sscanf(lc,"%*s %i %i %i",&va,&vb,&vc);
 			} else if(face_format==1){
-				int vna=0;int vnb=0;int vnc=0;
 				sscanf(lc,"%*s %i//%i %i//%i %i//%i",&va,&vna,&vb,&vnb,&vc,&vnc);
 			} else if(face_format==2){
-				int vta=0;int vtb=0;int vtc=0;
-				int vna=0;int vnb=0;int vnc=0;
 				sscanf(lc,"%*s %i/%i/%i %i/%i/%i %i/%i/%i",&va,&vta,&vna,&vb,&vtb,&vnb,&vc,&vtc,&vnc);
 			} else {
-				int vta=0;int vtb=0;int vtc=0;
 				sscanf(lc,"%*s %i/%i %i/%i %i/%i",&va,&vta,&vb,&vtb,&vc,&vtc);
 			}
 
-			va--; vb--; vc--;//indices in obj start with 1, in here, it starts with 0
+            va--;  vb--;  vc--;//indices in obj start with 1, in here, it starts with 0
+            if(vta!=0 || vtb!=0 || vtc!=0){
+                vta--; vtb--; vtc--;
+            }
+
 			if(m!=nullptr){
-				m->add_face(new Face(va,vb,vc,0));
+                if(vta!=0 || vtb!=0 || vtc!=0){
+                    //std::cout << "a:"<<va<< "b:"<<vb<< "c:"<<vc << "vta:"<<vta<< "vtb:"<<vtb<< "vtc:"<<vtc<<"\n";
+                    m->add_face(new Face(va,vb,vc,vta,vtb,vtc,0));
+                } else {
+
+                    m->add_face(new Face(va,vb,vc,0));
+                }
+
 			}
 		}
 	}
-	m->calculate_face_normals();
+    m->calculate_face_normals();
+
 }

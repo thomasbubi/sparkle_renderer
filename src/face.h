@@ -6,8 +6,14 @@ class Face {
 	unsigned int _b;
 	unsigned int _c;
 	unsigned int _m;
+    unsigned int _uva;
+    unsigned int _uvb;
+    unsigned int _uvc;
 public:
 	Face(unsigned int a,unsigned int b,unsigned int c, unsigned int material_index);
+    Face(unsigned int a,unsigned int b,unsigned int c,
+         unsigned int uva, unsigned int uvb, unsigned int uvc, unsigned int material_index);
+
 	virtual ~Face();
 
     inline unsigned int a() const {
@@ -21,6 +27,18 @@ public:
     inline unsigned int c() const {
 		return _c;
 	}
+    inline unsigned int uva() const {
+        return _uva;
+    }
+
+    inline unsigned int uvb() const {
+        return _uvb;
+    }
+
+    inline unsigned int uvc() const {
+        return _uvc;
+    }
+
     inline unsigned int material_index() const {
 		return _m;
 	}

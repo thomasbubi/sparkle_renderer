@@ -23,13 +23,18 @@ Color shade(Scene& scene,Vector& surface_point, Vector* n,
         unsigned int face_index_b = face->b();
         unsigned int face_index_c = face->c();
 
-        float u = alpha*mesh->get_uv(face_index_a)->u()+
-                beta*mesh->get_uv(face_index_b)->u()+
-                gamma*mesh->get_uv(face_index_c)->u();
+        unsigned int uv_index_a = face->uva();
+        unsigned int uv_index_b = face->uvb();
+        unsigned int uv_index_c = face->uvc();
 
-        float v = alpha*mesh->get_uv(face_index_a)->v()+
-                beta*mesh->get_uv(face_index_b)->v()+
-                gamma*mesh->get_uv(face_index_c)->v();
+
+        float u = alpha*mesh->get_uv(uv_index_a)->u()+
+                beta*mesh->get_uv(uv_index_b)->u()+
+                gamma*mesh->get_uv(uv_index_c)->u();
+
+        float v = alpha*mesh->get_uv(uv_index_a)->v()+
+                beta*mesh->get_uv(uv_index_b)->v()+
+                gamma*mesh->get_uv(uv_index_c)->v();
 
         diffuse = material->get_texture_color_at(u,v,x,y);
 
