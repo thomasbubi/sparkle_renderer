@@ -8,7 +8,7 @@ features:
 * miauing when rendering finishes
 
 under linux, compiles with:
-g++ camera.cpp color.cpp face.cpp lamp.cpp material.cpp mesh.cpp ray.cpp scene.cpp vector.cpp shade.cpp trace.cpp load_obj.cpp uv.cpp lodepng.h texture.cpp main.cpp -std=c++0x
+src/camera.cpp src/color.cpp src/face.cpp src/lamp.cpp src/material.cpp src/mesh.cpp src/ray.cpp src/scene.cpp src/vector.cpp src/shade.cpp src/trace.cpp src/load_obj.cpp src/uv.cpp src/lodepng.cpp src/texture.cpp src/main.cpp -std=c++0x -g
 
 Licensed under the MIT-License
 
@@ -18,3 +18,4 @@ features in planning
 * decent import for obj-files
 * Path Tracing
 * Phong Shading
+* bvh

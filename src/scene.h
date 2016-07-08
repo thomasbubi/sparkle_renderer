@@ -10,7 +10,7 @@ class Scene {
 	unsigned int _number_of_materials;
 	Camera* _camera;
 	std::vector<Mesh*> _meshes;
-	std::vector<Material*> _materials;
+    std::vector<DiffuseMaterial*> _materials;
 	std::vector<Lamp*> _lamps;
 	Color _background_color;
 public:
@@ -25,7 +25,7 @@ public:
 		_number_of_meshes+=1;
 	}
 
-    inline unsigned int add_material(Material* mat){
+    inline unsigned int add_material(DiffuseMaterial* mat){
 		_materials.push_back(mat);
 		_number_of_materials+=1;
 		return _number_of_materials -1;
@@ -44,7 +44,7 @@ public:
 		return _meshes[i];
 	}
 
-    inline Material* get_material(int i){
+    inline DiffuseMaterial* get_material(int i){
 		return _materials[i];
 	}
 

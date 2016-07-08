@@ -33,7 +33,7 @@ int main()
 	Camera* cam = new Camera(Vector(0,-1.5,0),Vector(0,1,0),width,height);
 	Scene scn = Scene();
 	scn.set_camera(cam);
-    /*Mesh* cornell_box = new Mesh(8,10);
+    Mesh* cornell_box = new Mesh(8,10);
 
 	cornell_box->add_vertex(new Vector(-1,-1,-1));
 	cornell_box->add_vertex(new Vector(-1,-1,1));
@@ -69,18 +69,18 @@ int main()
     Texture* tex = new Texture("texture.png");
     tex->load_texture();
 
-    Material* textured_material = new Material(Color(1,1,1));
+    DiffuseMaterial* textured_material = new DiffuseMaterial(Color(1,1,1));
     textured_material->add_texture(tex);
 
-    scn.add_material(new Material(Color(1,0,0)));
+    scn.add_material(new DiffuseMaterial(Color(1,0,0)));
     scn.add_material(textured_material);
-    scn.add_material(new Material(Color(0,1,0)));
+    scn.add_material(new DiffuseMaterial(Color(0,1,0)));
 
-    scn.add_mesh(cornell_box);*/
+    scn.add_mesh(cornell_box);
 
     scn.add_lamp(new Lamp(Vector(0.8,0.8,0.8),Color(0.5,0.5,0.5),1));
-    scn.add_material(new Material(Color(1,1,1)));
-    load_obj(&scn,"untitled.obj");
+    //scn.add_material(new DiffuseMaterial(Color(1,1,1)));
+    //load_obj(&scn,"untitled.obj");
 
     render(scn);
 
