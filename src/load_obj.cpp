@@ -30,15 +30,19 @@ int detect_obj_format(const char* line){
 void load_obj(Scene* scene, std::string path){
 	std::ifstream file(path);
 	if(!file.is_open()){
-		std::cout << "error loading file " + path << std::endl;
+        std::cerr << "error loading file " + path << std::endl;
 		return;
 	}
 
 	bool format_detected = false;
 	int face_format = -1;//-1: not detected yet, 0: v, 1: v//vn, 2:v/vt/vn 3: v/vt
 
+    int number_of_lines = 0;
+    int difference = 0;
+
 	std::string line_content_string;
 	Mesh* m;
+    std::vector<Mesh*> mesh_pointers;
 	while(std::getline(file,line_content_string)){
 		const char* lc =line_content_string.c_str();
 
@@ -49,10 +53,14 @@ void load_obj(Scene* scene, std::string path){
 		}
 
 		if(lc[0]=='o'){//new object in obj file, new mesh is created
+
 			m = new Mesh(3,1);
 			scene->add_mesh(m);
+            mesh_pointers.push_back(m);
+            //std::cout << "=====================\n";
 			m->set_name("cube");
             format_detected=false;
+            difference = number_of_lines;
             continue;
 		//read vertex data
 		} else if(lc[0]=='v' && lc[1]==' '){
@@ -61,42 +69,50 @@ void load_obj(Scene* scene, std::string path){
 			if(m!=nullptr){
 				m->add_vertex(new Vector(x,y,z));
 			}
+            number_of_lines++;
 		} else if(lc[0]=='f'){
 			//face_format= -1: not detected yet, 0: v, 1: v//vn, 2:v/vt/vn 3: v/vt
-			int va=1;
-			int vb=1;
-			int vc=1;
+            int va=0;
+            int vb=0;
+            int vc=0;
 
             int vta=0;int vtb=0;int vtc=0;
             int vna=0;int vnb=0;int vnc=0;
-            //std::cout << "faceformat "<<face_format << "\n";
+
 			if(face_format==0){
 				sscanf(lc,"%*s %i %i %i",&va,&vb,&vc);
 			} else if(face_format==1){
 				sscanf(lc,"%*s %i//%i %i//%i %i//%i",&va,&vna,&vb,&vnb,&vc,&vnc);
+                std::cout << "  a: "<<va<<" b:"<<vb << " c:"<<vc<<std::endl;
 			} else if(face_format==2){
 				sscanf(lc,"%*s %i/%i/%i %i/%i/%i %i/%i/%i",&va,&vta,&vna,&vb,&vtb,&vnb,&vc,&vtc,&vnc);
 			} else {
 				sscanf(lc,"%*s %i/%i %i/%i %i/%i",&va,&vta,&vb,&vtb,&vc,&vtc);
 			}
 
+            if(difference>0){
+                va -= difference; vb-= difference; vc -= difference;
+            }
+
             va--;  vb--;  vc--;//indices in obj start with 1, in here, it starts with 0
+
             if(vta!=0 || vtb!=0 || vtc!=0){
                 vta--; vtb--; vtc--;
             }
 
 			if(m!=nullptr){
                 if(vta!=0 || vtb!=0 || vtc!=0){
-                    //std::cout << "a:"<<va<< "b:"<<vb<< "c:"<<vc << "vta:"<<vta<< "vtb:"<<vtb<< "vtc:"<<vtc<<"\n";
                     m->add_face(new Face(va,vb,vc,vta,vtb,vtc,0));
                 } else {
-
-                    m->add_face(new Face(va,vb,vc,0));
+                    m->add_face(new Face(va,vb,vc,0,0,0,0));
                 }
 
 			}
-		}
-	}
-    m->calculate_face_normals();
+        }
+    }
 
+    for(size_t i =0;i<mesh_pointers.size();i++){
+        Mesh* tmp_mesh = mesh_pointers[i];
+        tmp_mesh->calculate_face_normals();
+    }
 }

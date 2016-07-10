@@ -10,6 +10,8 @@ protected:
     float _roughness;
     int _type;//1-> diffuse; 2-> glass; 3-> glossy; 4-> Mix
 public:
+    virtual ~Material(){}
+
     inline const Color& get_color() const {
         return _color;
     }
@@ -46,6 +48,21 @@ public:
     }
 
     Color get_texture_color_at(float u, float v,int x,int y);
+};
+
+class GlassMaterial : public Material {
+    float _ior;
+public:
+    GlassMaterial(const Color& color, float ior);
+    virtual ~GlassMaterial();
+
+    inline float get_ior(){
+        return _ior;
+    }
+
+    inline void set_ior(float ior){
+        _ior = ior;
+    }
 };
 
 #endif /* SRC_MATERIAL_H_ */

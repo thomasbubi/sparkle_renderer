@@ -19,8 +19,8 @@ void render(Scene& scn){
             Color c = trace(ray,scn,i,j);
 			image_file << int(c.r()*255) << " " << int(c.g()*255)
 					<< " " << int(c.b()*255) << "\n";
-		}
-	}
+        }
+    }
 
 	image_file.close();
 }
@@ -30,9 +30,10 @@ int main()
 	int width = 640;
 	int height = 480;
 
-	Camera* cam = new Camera(Vector(0,-1.5,0),Vector(0,1,0),width,height);
+    Camera* cam = new Camera(Vector(0,-1.5,0.2),Vector(0,1,0),width,height);
 	Scene scn = Scene();
 	scn.set_camera(cam);
+
     Mesh* cornell_box = new Mesh(8,10);
 
 	cornell_box->add_vertex(new Vector(-1,-1,-1));
@@ -79,8 +80,8 @@ int main()
     scn.add_mesh(cornell_box);
 
     scn.add_lamp(new Lamp(Vector(0.8,0.8,0.8),Color(0.5,0.5,0.5),1));
-    //scn.add_material(new DiffuseMaterial(Color(1,1,1)));
-    //load_obj(&scn,"untitled.obj");
+    scn.add_material(new DiffuseMaterial(Color(1,1,1)));
+    load_obj(&scn,"untitled.obj");
 
     render(scn);
 

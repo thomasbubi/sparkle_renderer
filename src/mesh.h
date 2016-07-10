@@ -27,8 +27,13 @@ public:
 	virtual ~Mesh();
     inline unsigned int get_number_of_vertices(){return _vertices.size();}
     inline unsigned int get_number_of_faces(){return _faces.size();}
+    //for debugging purposes
+    inline unsigned int get_number_of_face_normals(){return _vertices.size();}
+    inline unsigned int get_number_of_vertex_normals(){return _vertices.size();}
 
-    Vector* get_face_normal(unsigned int index){return _face_normals[index];}
+    Vector* get_face_normal(unsigned int index){
+        return _face_normals[index];
+    }
 	Vector* get_vertex_normal(unsigned int index){return _vertex_normals[index];}
     UV* get_uv(unsigned int index){return _uvs[index];}
 

@@ -18,3 +18,11 @@ Color DiffuseMaterial::get_texture_color_at(float u, float v,int x,int y){
         return _color;
     }
 }
+
+GlassMaterial::GlassMaterial(const Color& color, float ior){
+    _color = color;
+    _ior = ior;
+    _type = 2;
+}
+
+GlassMaterial::~GlassMaterial(){}

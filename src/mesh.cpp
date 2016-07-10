@@ -34,7 +34,6 @@ Mesh::~Mesh() {
 
 void Mesh::calculate_face_normals(){
     _face_normals.reserve(_faces.size());
-    std::cout << "reach 100 \n";
 
     for(unsigned int i=0;i<_faces.size();i++){
 		Face* tmp_face = _faces[i];
@@ -46,8 +45,10 @@ void Mesh::calculate_face_normals(){
 
         if(a>= number_of_vertices_in_vector || b>= number_of_vertices_in_vector || c>= number_of_vertices_in_vector){
             //sanity check
-            std::cerr << " The face with contains invalid indices. Face " << a << " " << b << " " << c << std::endl
+
+            std::cerr << " The face #"<< i << "contains invalid indices. Face " << a << " " << b << " " << c << std::endl
                       << "Calculation of face normals aborted." << std::endl;
+            std::cout << "#"<< number_of_vertices_in_vector << " a:"<<a<<" b:"<<b<<" c:"<<c<<std::endl;
             return;
         }
         Vector* va = _vertices[a];
@@ -55,7 +56,7 @@ void Mesh::calculate_face_normals(){
         Vector* vc = _vertices[c];
 
 
-        std::cout << vb->x()<<vb->y()<<vb->z()<<"\n";// << " " <<va->y() << " " <<va->z() << " \n";
+        //std::cout << vb->x()<<vb->y()<<vb->z()<<"\n";// << " " <<va->y() << " " <<va->z() << " \n";
         //Vector n_tmp(0,0,0);
         Vector n_tmp = Vector::cross(*vb-*va,*vc-*va);
 
