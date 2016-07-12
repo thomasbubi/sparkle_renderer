@@ -81,7 +81,7 @@ int main()
 
     scn.add_lamp(new Lamp(Vector(0.8,0.8,0.8),Color(0.5,0.5,0.5),1));
     scn.add_material(new DiffuseMaterial(Color(1,1,1)));
-    load_obj(&scn,"untitled.obj");
+    load_obj(&scn,"untitled42.obj");
 
     render(scn);
 

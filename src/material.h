@@ -9,6 +9,7 @@ protected:
     Color _color;
     float _roughness;
     int _type;//1-> diffuse; 2-> glass; 3-> glossy; 4-> Mix
+    std::string _name;
 public:
     virtual ~Material(){}
 
@@ -29,6 +30,14 @@ public:
     }
 
     inline int get_type(){return _type;}
+
+    inline std::string get_name(){
+        return _name;
+    }
+
+    inline void set_string(std::string s){
+        _name = s;
+    }
 };
 
 class DiffuseMaterial : public Material {
@@ -63,6 +72,24 @@ public:
     inline void set_ior(float ior){
         _ior = ior;
     }
+};
+
+class GlossyMaterial : public Material {
+public:
+    GlossyMaterial(const Color& color, float roughness);
+    virtual ~GlossyMaterial();
+};
+
+class MixMaterial : public Material {
+    //use smart pointer
+    Material* _mat_1;
+    Material* _mat_2;
+    float _blend_value;
+public:
+    MixMaterial(Material* m1, Material* m2, float blend);
+    virtual ~MixMaterial();
+    Material* get_material_1();
+    Material* get_material_2();
 };
 
 #endif /* SRC_MATERIAL_H_ */

@@ -8,6 +8,8 @@ class Lamp {
 	Vector _position;
 	Color _color;
 	float _intensity;
+    unsigned int _number_of_shadow_samples;
+
 public:
 	Lamp(Vector position, Color color,float intensity);
 	virtual ~Lamp();

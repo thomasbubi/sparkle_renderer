@@ -56,9 +56,14 @@ void load_obj(Scene* scene, std::string path){
 
 			m = new Mesh(3,1);
 			scene->add_mesh(m);
+
+            size_t num_char = line_content_string.size();
+            if(num_char<3){num_char=3;}
+            char* mesh_name_cstr = new char[line_content_string.size() - 2];
+            sscanf(lc, "%*s %s",mesh_name_cstr);
+            m->set_name(std::string(mesh_name_cstr));
+
             mesh_pointers.push_back(m);
-            //std::cout << "=====================\n";
-			m->set_name("cube");
             format_detected=false;
             difference = number_of_lines;
             continue;
@@ -83,7 +88,6 @@ void load_obj(Scene* scene, std::string path){
 				sscanf(lc,"%*s %i %i %i",&va,&vb,&vc);
 			} else if(face_format==1){
 				sscanf(lc,"%*s %i//%i %i//%i %i//%i",&va,&vna,&vb,&vnb,&vc,&vnc);
-                std::cout << "  a: "<<va<<" b:"<<vb << " c:"<<vc<<std::endl;
 			} else if(face_format==2){
 				sscanf(lc,"%*s %i/%i/%i %i/%i/%i %i/%i/%i",&va,&vta,&vna,&vb,&vtb,&vnb,&vc,&vtc,&vnc);
 			} else {
