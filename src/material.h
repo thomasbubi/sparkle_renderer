@@ -1,5 +1,6 @@
 #include "color.h"
 #include "texture.h"
+#include <memory>
 
 #ifndef SRC_MATERIAL_H_
 #define SRC_MATERIAL_H_
@@ -81,15 +82,15 @@ public:
 };
 
 class MixMaterial : public Material {
-    //use smart pointer
-    Material* _mat_1;
-    Material* _mat_2;
+    std::shared_ptr<Material> _mat_1;
+    std::shared_ptr<Material> _mat_2;
     float _blend_value;
 public:
-    MixMaterial(Material* m1, Material* m2, float blend);
+    MixMaterial(std::shared_ptr<Material> m1, std::shared_ptr<Material> m2, float blend);
     virtual ~MixMaterial();
-    Material* get_material_1();
-    Material* get_material_2();
+    std::shared_ptr<Material> get_material_1();
+    std::shared_ptr<Material> get_material_2();
+    float get_blend_value();
 };
 
 #endif /* SRC_MATERIAL_H_ */

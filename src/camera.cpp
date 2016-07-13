@@ -5,6 +5,9 @@ Camera::Camera(const Vector& position, const Vector& direction, float resolution
 	_w = direction;
 	_w.normalize();
 	Vector up(0,0,1);
+    if(_w.x() == 0 && _w.y()==0){
+        up = Vector(0,1,0);
+    }
 	_u = Vector::cross(_w,up);
 	_u.normalize();
 	_v = Vector::cross(_w,_u);

@@ -51,6 +51,13 @@ Color shade(Scene& scene,Vector& surface_point, Vector* n,
 
         for(int i=0;i<scene.get_number_of_lamps();i++){
             Lamp* lamp_i = scene.get_lamp(i);
+            int times_in_shadow = 0;
+
+            for(int j=0;j<lamp_i->get_number_of_shadow_samples();j++){
+
+
+            }
+
             Vector lamp_position = lamp_i->get_position();
             Vector l = lamp_position - surface_point;
             l.normalize();
@@ -59,8 +66,9 @@ Color shade(Scene& scene,Vector& surface_point, Vector* n,
             float n_dot_l = std::fabs(Vector::dot(*n,l));
             float n_dot_h = std::fabs(Vector::dot(*n,h));
 
-            pixel_color += diffuse  * lamp_i->get_intensity() * n_dot_l;//diffuse
-            pixel_color += diffuse * lamp_i->get_intensity() * std::pow(n_dot_h,100);//specular
+            float shadow_value = 1 - (times_in_shadow / lamp_i->get_number_of_shadow_samples());
+            pixel_color += diffuse  * lamp_i->get_intensity() * n_dot_l * shadow_value;//diffuse
+            pixel_color += diffuse * lamp_i->get_intensity() * std::pow(n_dot_h,100) * shadow_value; //specular
         }
 
         pixel_color.clamp();

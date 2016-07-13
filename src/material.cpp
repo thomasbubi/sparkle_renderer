@@ -35,23 +35,20 @@ GlossyMaterial::GlossyMaterial(const Color &color, float roughness){
 
 GlossyMaterial::~GlossyMaterial(){}
 
-MixMaterial::MixMaterial(Material *m1, Material *m2, float blend){
+MixMaterial::MixMaterial(std::shared_ptr<Material> m1,std::shared_ptr<Material> m2, float blend){
     _mat_1=m1;
     _mat_2=m2;
     _blend_value=blend;
     _type = 4;
 }
 
-MixMaterial::~MixMaterial(){
-    delete _mat_1;
-    delete _mat_2;
-}
+MixMaterial::~MixMaterial(){}
 
-Material* MixMaterial::get_material_1(){
+std::shared_ptr<Material> MixMaterial::get_material_1(){
     return _mat_1;
 }
 
-Material* MixMaterial::get_material_2(){
+std::shared_ptr<Material> MixMaterial::get_material_2(){
     return _mat_2;
 }
 
